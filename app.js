@@ -70,4 +70,18 @@ const lightboxImgElem = document.querySelector(".lightbox__image");
 const lightboxBtnElem = document.querySelector(".lightbox__button");
 const lightboxOverlayElem = document.querySelector(".lightbox__overlay");
 
-console.log(galleryElem);
+
+
+const creatingGallery = galleryItems.map((item) => {
+    return `<li class="gallery__item" >
+      <a class="gallery__link" href="${item.original}" >
+      <img
+      class="gallery__image"
+       src="${item.preview}"
+       data-source="${item.original}";
+       alt="${item.description}"
+     />
+      </a>
+      </li>`;
+}).join('');
+galleryElem.insertAdjacentHTML('beforeend', creatingGallery);
