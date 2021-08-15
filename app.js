@@ -63,3 +63,11 @@ const galleryItems = [
         description: 'Lighthouse Coast Sea',
     },
 ];
+
+const galleryElem = document.querySelector(".js-gallery");
+const lightboxElem = document.querySelector(".js-lightbox");
+const lightboxImgElem = document.querySelector(".lightbox__image");
+const lightboxBtnElem = document.querySelector(".lightbox__button");
+const lightboxOverlayElem = document.querySelector(".lightbox__overlay");
+
+console.log(galleryElem);
