@@ -67,8 +67,8 @@ const galleryItems = [
 const galleryElem = document.querySelector(".js-gallery");
 const lightboxElem = document.querySelector(".js-lightbox");
 const lightboxImgElem = document.querySelector(".lightbox__image");
-const lightboxBtnElem = document.querySelector(".lightbox__button");
-const lightboxOverlayElem = document.querySelector(".lightbox__overlay");
+const closeModalBtn = document.querySelector(".lightbox__button");
+const overlayElem = document.querySelector(".lightbox__overlay");
 
 
 
@@ -85,3 +85,28 @@ const creatingGallery = galleryItems.map((item) => {
       </li>`;
 }).join('');
 galleryElem.insertAdjacentHTML('beforeend', creatingGallery);
+
+function openModal(evt) {
+    evt.preventDefault();
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  };
+  lightboxElem.classList.add('is-open');
+  galleryItems.forEach(item => {
+    if (evt.target.getAttribute('src') === item.preview) {
+      lightboxImgElem.setAttribute('src', item.original);
+      lightboxImgElem.setAttribute('alt', item.description);
+    }
+  })
+}
+function closeModal(evt) { 
+  if (evt.target.classList.contains('lightbox__button') || evt.target.classList.contains('lightbox__overlay') || evt.key === 'Escape' ) {
+      lightboxElem.classList.remove('is-open');
+      galleryItems.forEach(item => {lightboxImgElem.removeAttribute('src')})
+    }
+}
+
+galleryElem.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+document.addEventListener('keydown', closeModal); 
+overlayElem.addEventListener('click', closeModal);
